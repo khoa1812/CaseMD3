@@ -33,10 +33,6 @@
             <form action="/students" method="post">
                 <input type="hidden" name="action" value="create">
                 <div class="mb-3">
-                    <label for="studentId" class="form-label">ID Sinh Viên:</label>
-                    <input type="number" class="form-control" id="studentId" name="studentId" required>
-                </div>
-                <div class="mb-3">
                     <label for="nameStudent" class="form-label">Tên Sinh Viên:</label>
                     <input type="text" class="form-control" id="nameStudent" name="nameStudent" required>
                 </div>
@@ -58,7 +54,7 @@
                 </div>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-custom">Tạo</button>
-                    <a href="/student" class="btn btn-secondary">Quay lại</a>
+                    <a href="/students" class="btn btn-secondary">Quay lại</a>
                 </div>
             </form>
         </div>
