@@ -65,7 +65,20 @@ SELECT
     s.dob AS dob,
     MAX(CASE WHEN su.nameSubject = 'Toan' THEN g.grade ELSE NULL END) AS gradeToan,
     MAX(CASE WHEN su.nameSubject = 'Van' THEN g.grade ELSE NULL END) AS gradeVan,
+<<<<<<< HEAD
     MAX(CASE WHEN su.nameSubject = 'Anh' THEN g.grade ELSE NULL END) AS gradeAnh
+=======
+    MAX(CASE WHEN su.nameSubject = 'Anh' THEN g.grade ELSE NULL END) AS gradeAnh,
+    (
+        COALESCE(MAX(CASE WHEN su.nameSubject = 'Toan' THEN g.grade ELSE NULL END), 0) +
+        COALESCE(MAX(CASE WHEN su.nameSubject = 'Van' THEN g.grade ELSE NULL END), 0) +
+        COALESCE(MAX(CASE WHEN su.nameSubject = 'Anh' THEN g.grade ELSE NULL END), 0)
+        ) / (
+        (CASE WHEN MAX(CASE WHEN su.nameSubject = 'Toan' THEN g.grade ELSE NULL END) IS NOT NULL THEN 1 ELSE 0 END) +
+        (CASE WHEN MAX(CASE WHEN su.nameSubject = 'Van' THEN g.grade ELSE NULL END) IS NOT NULL THEN 1 ELSE 0 END) +
+        (CASE WHEN MAX(CASE WHEN su.nameSubject = 'Anh' THEN g.grade ELSE NULL END) IS NOT NULL THEN 1 ELSE 0 END)
+        ) AS scoreAVG
+>>>>>>> 372781f09fc25f68e205d03b985398c9786653cc
 FROM
     Student s
         LEFT JOIN
@@ -82,7 +95,10 @@ SELECT * FROM AllStudent;
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 372781f09fc25f68e205d03b985398c9786653cc
 
 
 
