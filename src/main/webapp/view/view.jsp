@@ -6,6 +6,14 @@
 <head>
   <title>View Student</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body{
+      background-image: url('https://png.pngtree.com/background/20230401/original/pngtree-heavens-gate-beautiful-background-picture-image_2248817.jpg'); /* Thay 'link-ảnh-học-tập.jpg' bằng đường dẫn đến hình ảnh thích hợp */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
