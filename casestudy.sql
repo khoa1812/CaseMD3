@@ -1,7 +1,6 @@
 create database casestudy;
 
 use casestudy;
-
 create table Class (
     id int auto_increment primary key,
     nameClass varchar(255)
@@ -10,7 +9,7 @@ create table Class (
 create table Student (
     studentId int auto_increment primary key,
     nameStudent varchar(255),
-    dob date,
+    dob varchar(255),
     id_class int, foreign key (id_class) references Class (id)
 );
 
@@ -56,8 +55,7 @@ select * from Student;
 select * from Subject;
 
 select * from Grade;
-
-CREATE VIEW AllStudent AS
+CREATE table AllStudent AS
 SELECT
     s.studentId AS studentID,
     s.nameStudent AS nameStudent,

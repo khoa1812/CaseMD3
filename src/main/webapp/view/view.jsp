@@ -32,6 +32,10 @@
             <label for="gradeAnh" class="form-label">Điểm Anh:</label>
             <input type="text" class="form-control" id="gradeAnh" name="gradeAnh" value="${student.gradeAnh}" readonly>
         </div>
+        <div class="mb-3">
+            <label for="nameClass" class="form-label">Tên lớp:</label>
+            <input type="text" class="form-control" id="nameClass" name="nameClass" value="${student.nameClass}" readonly>
+        </div>
         <a href="students?action=list" class="btn btn-primary">Quay lại</a>
     </form>
 </div>

@@ -26,7 +26,7 @@ public class StudentDAO {
 
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
-        String query = "SELECT * FROM student";
+        String query = "SELECT * FROM allstudent";
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
@@ -35,8 +35,11 @@ public class StudentDAO {
                 Student student = new Student();
                 student.setStudentId(rs.getInt("studentId"));
                 student.setNameStudent(rs.getString("nameStudent"));
-                student.setDob(rs.getDate("dob"));
-
+                student.setDob(rs.getString("dob"));
+                student.setGradeToan(rs.getDouble("gradeToan"));
+                student.setGradeVan(rs.getDouble("gradeVan"));
+                student.setGradeAnh(rs.getDouble("gradeAnh"));
+                student.setNameClass(rs.getString("nameClass"));
                 students.add(student);
             }
         } catch (SQLException e) {
@@ -57,10 +60,11 @@ public class StudentDAO {
                     student = new Student();
                     student.setStudentId(rs.getInt("studentID"));
                     student.setNameStudent(rs.getString("nameStudent"));
-                    student.setDob(rs.getDate("dob"));
+                    student.setDob(rs.getString("dob"));
                     student.setGradeToan(rs.getDouble("gradeToan"));
                     student.setGradeVan(rs.getDouble("gradeVan"));
                     student.setGradeAnh(rs.getDouble("gradeAnh"));
+                    student.setNameClass(rs.getString("nameClass"));
                 }
             }
         } catch (SQLException e) {
@@ -70,15 +74,17 @@ public class StudentDAO {
     }
 
     public void createStudent(Student student) {
-        String query = "INSERT INTO Student (nameStudent, dob, gradeToan, gradeVan, gradeAnh) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO allstudent (nameStudent, nameClass, dob, gradeToan, gradeVan, gradeAnh) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, student.getNameStudent());
-            stmt.setDate(2, new java.sql.Date(student.getDob().getTime()));
-            stmt.setDouble(3, student.getGradeToan());
-            stmt.setDouble(4, student.getGradeVan());
-            stmt.setDouble(5, student.getGradeAnh());
+            stmt.setString(2, student.getNameClass());
+            stmt.setString(3, student.getDob());
+            stmt.setDouble(4, student.getGradeToan());
+            stmt.setDouble(5, student.getGradeVan());
+            stmt.setDouble(6, student.getGradeAnh());
+
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -86,42 +92,30 @@ public class StudentDAO {
         }
     }
 
-
     public void updateStudent(Student student) {
-        String query = "UPDATE student SET nameStudent = ?, dob = ?, gradeToan = ?, gradeVan = ?, gradeAnh = ? WHERE studentId = ?";
+        String query = "UPDATE allStudent SET nameStudent = ?, dob = ?, nameClass = ?, gradeToan = ?, gradeVan = ?, gradeAnh = ? WHERE studentId = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, student.getNameStudent());
-            stmt.setDate(2, new java.sql.Date(student.getDob().getTime()));
-            stmt.setDouble(3, student.getGradeToan());
-            stmt.setDouble(4, student.getGradeVan());
-            stmt.setDouble(5, student.getGradeAnh());
-            stmt.setInt(6, student.getStudentId());
-
+            stmt.setString(2, student.getDob());
+            stmt.setString(3, student.getNameClass());
+            stmt.setDouble(4, student.getGradeToan());
+            stmt.setDouble(5, student.getGradeVan());
+            stmt.setDouble(6, student.getGradeAnh());
+            stmt.setInt(7, student.getStudentId());
             stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void deleteStudent(int studentId) {
-        deleteStudentGrades(studentId);
-        String query = "DELETE FROM Student WHERE studentId = ?";
+        String query = "DELETE FROM allStudent WHERE studentId = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, studentId);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteStudentGrades(int studentId) {
-        String sql = "DELETE FROM Grade WHERE id_student = ?";
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, studentId);
             stmt.executeUpdate();
         } catch (SQLException e) {

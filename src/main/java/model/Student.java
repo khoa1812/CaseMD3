@@ -5,22 +5,24 @@ import java.util.Date;
 public class Student implements GradeAVG {
     private int studentId;
     private String nameStudent;
-    private Date dob;
+    private String dob;
 
     private double gradeToan;
     private double gradeVan;
     private double gradeAnh;
+    private String nameClass;
 
     public Student() {
     }
 
-    public Student( int studentId, String nameStudent, Date dob, double gradeToan, double gradeVan, double gradeAnh) {
+    public Student(int studentId, String nameStudent, String dob, double gradeToan, double gradeVan, double gradeAnh, String nameClass) {
         this.studentId = studentId;
         this.nameStudent = nameStudent;
         this.dob = dob;
         this.gradeToan = gradeToan;
         this.gradeVan = gradeVan;
         this.gradeAnh = gradeAnh;
+        this.nameClass = nameClass;
     }
 
     public int getStudentId() {
@@ -39,11 +41,11 @@ public class Student implements GradeAVG {
         this.nameStudent = nameStudent;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -71,6 +73,14 @@ public class Student implements GradeAVG {
         this.gradeAnh = gradeAnh;
     }
 
+    public String getNameClass() {
+        return nameClass;
+    }
+
+    public void setNameClass(String nameClass) {
+        this.nameClass = nameClass;
+    }
+
     @Override
     public double scoreAVG() {
         return (getGradeToan()+getGradeVan()+getGradeAnh())/3;
@@ -85,7 +95,7 @@ public class Student implements GradeAVG {
                 ", gradeToan=" + gradeToan +
                 ", gradeVan=" + gradeVan +
                 ", gradeAnh=" + gradeAnh +
-                ", gradeAVG=" + scoreAVG() +
+                ", nameClass='" + nameClass + '\'' +
                 '}';
     }
 }

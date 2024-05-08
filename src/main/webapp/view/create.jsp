@@ -31,6 +31,7 @@
         <div class="col-md-8 form-container">
             <h2 class="text-center">Tạo Sinh Viên Mới</h2>
             <form action="/students" method="post">
+
                 <input type="hidden" name="action" value="create">
                 <div class="mb-3">
                     <label for="nameStudent" class="form-label">Tên Sinh Viên:</label>
@@ -51,6 +52,10 @@
                 <div class="mb-3">
                     <label for="gradeAnh" class="form-label">Điểm Anh:</label>
                     <input type="number" step="0.1" class="form-control" id="gradeAnh" name="gradeAnh" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nameClass" class="form-label">Tên lớp:</label>
+                    <input type="text" class="form-control" id="nameClass" name="nameClass" required>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-custom">Tạo</button>
